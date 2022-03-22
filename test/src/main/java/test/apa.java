@@ -12,7 +12,7 @@ public class apa {
 		String dateFormat = DateFormatUtils.format(System.currentTimeMillis(), "yyyy-MM-dd HH:mm:ss");
 
 		System.out.println(dateFormat);
-		System.out.println(dateFormat);
+		System.out.println(dateFormat);System.out.println(dateFormat);
 	}
 
 }
