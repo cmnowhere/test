@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<log4j:configuration
+	xmlns:log4j="http://jakarta.apache.org/log4j/">
+	
+	<appender name="SQMS_REALTIME" class="org.apache.log4j.rolling.RollingFileAppender">
+		<rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+			<param name="FileNamePattern" value="d://log4jTest//test.%d{yyyy-MM-dd-HH-mm}.log" />
+		</rollingPolicy>
+		
+<!-- 		<triggeringPolicy class="org.apache.log4j.rolling.SizeBasedTriggeringPolicy"> -->
+<!-- 			<param name="MaxFileSize" value="100" /> -->
+<!-- 		</triggeringPolicy> -->
+		
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%m%n" />
+		</layout>
+		
+	</appender>
+
+	<!-- DEBUG 로그 -->
+	<appender name="DEBUG" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="d://log4jTest//debug.log"/>
+        <param name="MaxFileSize" value="100MB"/>
+        <param name="MaxBackupIndex" value="0"/>
+		<param name="ImmediateFlush" value="false"/>
+		<param name="BufferedIO" value="false"/>
+		<param name="BufferSize" value="8192"/>
+		<param name="ImmediateFlush" value="false"/>
+		<param name="Append" value="true"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}],%m%n"/>
+		</layout>
+	</appender>
+	
+	<category name="DEBUG" additivity="false">
+		<appender-ref ref="DEBUG"/>
+	</category>
+	
+	<logger name="SQMS_REALTIME">
+		<level value="WARN" />
+	</logger>
+
+	<root>
+		<priority value="DEBUG" />
+		<appender-ref ref="SQMS_REALTIME" />
+		<appender-ref ref="DEBUG" />
+	</root>
+</log4j:configuration> 
+
